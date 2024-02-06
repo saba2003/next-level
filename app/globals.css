@@ -35,6 +35,9 @@ nav a, nav span {
 nav a:hover {
   @apply text-black;
 }
+nav .active {
+  @apply font-semibold text-primary;
+}
 main nav {
   @apply border-0;
 }
