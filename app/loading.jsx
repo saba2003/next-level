@@ -1,7 +1,7 @@
 async function getFacts() {
   const res = await fetch('https://api.api-ninjas.com/v1/facts?limit=1', {
       headers: {
-        'X-Api-Key': 'Y4dtSPaGHzleoh69H9Pihg==nWxGT5Xt0jkQRZxm'
+        'X-Api-Key': process.env.NINJA_API_KEY
       },
       next: {
         revalidate: 0 //revalidate waits a certain time before re-renders updated data
