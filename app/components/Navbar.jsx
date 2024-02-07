@@ -6,6 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import Logo from './Tailwind_CSS_Logo.svg.png'
+import Person from './person.svg'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -20,6 +21,14 @@ export default function Navbar() {
         />
         <Link className={`link ${pathname === '/' ? 'active' : ''}`} href="/">Dashboard</Link>
         <Link className={`link ${pathname === '/tickets' ? 'active' : ''}`} href="/tickets">tickets</Link>
+        <Link className={`link ml-auto ${pathname === '/signUp' ? 'active' : ''}`} href="/account/signUp">
+          <Image 
+            src={Person}
+            alt='person icon'
+            width={30}
+            quality={30}
+          />
+        </Link>
     </nav>
   )
 }

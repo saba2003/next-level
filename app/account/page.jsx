@@ -3,7 +3,7 @@ import TicketList from './TicketList'
 import Loading from '../loading'
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary'
 
-export default function Tickets() {
+export default function Account() {
   return (
     <main>
         <nav>
