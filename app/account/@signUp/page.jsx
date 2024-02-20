@@ -6,7 +6,7 @@ export default function SignUp() {
     <main>
         <h2 className="text-primary text-center">Sign up!</h2>
         <SignUpForm />
-        <h2 className="text-gray-500 text-center">already have an account?  
+        <h2 className="text-gray-500 text-center mt-3">already have an account?  
           <Link className="link text-primary text-center" href="/account/logIn"> Log in!</Link>
         </h2>
     </main>
