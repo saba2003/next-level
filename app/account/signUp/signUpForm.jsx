@@ -6,67 +6,92 @@ import { useState } from "react"
 export default function SignUpForm() {
   const router = useRouter()
 
-  const [title, setTitle] = useState('')
-  const [body, setBody] = useState('')
-  const [priority, setPriority] = useState('low')
+  const [username, setUsername] = useState('')
+  const [mail, setMail] = useState('')
+  const [pass, setPass] = useState('')
+  const [passSec, setPassSec] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault()
     setIsLoading(true)
+    let successful = false
 
-    const ticket = {
-      title, body, priority, user_email: 'saba@gmail.com'
+    const user = {
+      id: 0, mail, pass
     }
 
-    const res = await fetch('http://localhost:4000/tickets', {
-      method: 'POST',
-      headers: {"content-Type": "application/json"},
-      body: JSON.stringify(ticket)
-    })
+    await fetch('http://localhost:4000/users')
+      .then(res => res.json())
+      .then(users => {
+        users.forEach(user => {
+          if(user.email === mail){
+            successful = true
+          }
+        });
+      }
+    );
 
-    if(res.status === 201) {
-      router.refresh()
-      router.push('/tickets')
+    if(!successful){
+      const res = await fetch('http://localhost:4000/users', {
+        method: 'POST',
+        headers: {"content-Type": "application/json"},
+        body: JSON.stringify(user)
+      })
+
+      if(res.status === 201) {
+        user.mail = mail
+        user.pass = pass
+        router.push('/')
+      }
     }
   }
   
   return(
-      <form onSubmit={handleSubmit} className="w-1/2">
+      <form onSubmit={handleSignUp} className="w-1/2">
       <label>
-        <span>Title:</span>
+        <span>username:</span>
         <input
           required 
           type="text"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
+          onChange={(e) => setUsername(e.target.value)}
+          value={username}
         />
       </label>
       <label>
-        <span>body:</span>
-        <textarea
-          required
-          onChange={(e) => setBody(e.target.value)}
-          value={body}
+        <span>Email:</span>
+        <input
+          required 
+          type="email"
+          onChange={(e) => setMail(e.target.value)}
+          value={mail}
         />
       </label>
       <label>
-        <span>Priority:</span>
-        <select 
-          onChange={(e) => setPriority(e.target.value)}
-          value={priority}
-        >
-          <option value="low">Low Priority</option>
-          <option value="medium">Medium Priority</option>
-          <option value="high">High Priority</option>
-        </select>
+        <span>Password:</span>
+        <input
+          required 
+          type="password"
+          onChange={(e) => setPass(e.target.value)}
+          value={pass}
+        />
       </label>
+      <label>
+        <span>Re-enter Password:</span>
+        <input
+          required 
+          type="password"
+          onChange={(e) => setPassSec(e.target.value)}
+          value={passSec}
+        />
+      </label>
+      
       <button 
         className="btn-primary" 
         disabled={isLoading}
       >
-      {isLoading && <span>Adding...</span>}
-      {!isLoading && <span>Add Ticket</span>}
+      {isLoading && <span>loading...</span>}
+      {!isLoading && <span>log in</span>}
     </button>
     </form>
   )

@@ -6,67 +6,65 @@ import { useState } from "react"
 export default function LogInForm() {
   const router = useRouter()
 
-  const [title, setTitle] = useState('')
-  const [body, setBody] = useState('')
-  const [priority, setPriority] = useState('low')
+  const [mail, setMail] = useState('')
+  const [pass, setPass] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
+  const handleLogIn = async (e) => {
     e.preventDefault()
     setIsLoading(true)
+    let successful = false
 
-    const ticket = {
-      title, body, priority, user_email: 'saba@gmail.com'
-    }
+    await fetch('http://localhost:4000/users')
+      .then(res => res.json())
+      .then(users => {
+        users.forEach(user => {
+          console.log(`${user.email} === ${mail}`)
+          console.log(`${user.password} === ${pass}`)
+          if(user.email === mail){
+            if(user.password === pass){
+              successful = true
+            }
+          }
+        });
+        
+        if(successful) {
+          router.push('/account/signUp')
+        }
 
-    const res = await fetch('http://localhost:4000/tickets', {
-      method: 'POST',
-      headers: {"content-Type": "application/json"},
-      body: JSON.stringify(ticket)
-    })
+        console.log(successful)
+      }
+    );
 
-    if(res.status === 201) {
-      router.refresh()
-      router.push('/tickets')
-    }
   }
   
   return(
-      <form onSubmit={handleSubmit} className="w-1/2">
+      <form onSubmit={handleLogIn} className="w-1/2">
       <label>
-        <span>Title:</span>
+        <span>Email:</span>
         <input
           required 
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
+          type="email"
+          onChange={(e) => setMail(e.target.value)}
+          value={mail}
         />
       </label>
       <label>
-        <span>body:</span>
-        <textarea
-          required
-          onChange={(e) => setBody(e.target.value)}
-          value={body}
+        <span>Password:</span>
+        <input
+          required 
+          type="password"
+          onChange={(e) => setPass(e.target.value)}
+          value={pass}
         />
       </label>
-      <label>
-        <span>Priority:</span>
-        <select 
-          onChange={(e) => setPriority(e.target.value)}
-          value={priority}
-        >
-          <option value="low">Low Priority</option>
-          <option value="medium">Medium Priority</option>
-          <option value="high">High Priority</option>
-        </select>
-      </label>
+      
       <button 
         className="btn-primary" 
         disabled={isLoading}
       >
-      {isLoading && <span>Adding...</span>}
-      {!isLoading && <span>Add Ticket</span>}
+      {isLoading && <span>loading...</span>}
+      {!isLoading && <span>log in</span>}
     </button>
     </form>
   )
