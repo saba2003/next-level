@@ -21,7 +21,8 @@ export default function Navbar() {
         />
         <Link className={`link ${pathname === '/' ? 'active' : ''}`} href="/">Dashboard</Link>
         <Link className={`link ${pathname === '/tickets' ? 'active' : ''}`} href="/tickets">tickets</Link>
-        <Link className='link ml-auto' href="/account">
+        <Link className='link ml-auto' href="/account/logIn
+        ">
           <Image 
             src={Person}
             alt='person icon'

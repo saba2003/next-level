@@ -43,6 +43,7 @@ export default function LogInForm() {
       <label>
         <span>Email:</span>
         <input
+          name="email"
           required 
           type="email"
           onChange={(e) => setMail(e.target.value)}
@@ -52,6 +53,7 @@ export default function LogInForm() {
       <label>
         <span>Password:</span>
         <input
+          name="password"
           required 
           type="password"
           onChange={(e) => setPass(e.target.value)}

@@ -52,6 +52,7 @@ export default function SignUpForm() {
       <label>
         <span>username:</span>
         <input
+          name="username"
           required 
           type="text"
           onChange={(e) => setUsername(e.target.value)}
@@ -61,6 +62,7 @@ export default function SignUpForm() {
       <label>
         <span>Email:</span>
         <input
+          name="email"
           required 
           type="email"
           onChange={(e) => setMail(e.target.value)}
@@ -70,6 +72,7 @@ export default function SignUpForm() {
       <label>
         <span>Password:</span>
         <input
+          name="password"
           required 
           type="password"
           onChange={(e) => setPass(e.target.value)}
@@ -79,6 +82,7 @@ export default function SignUpForm() {
       <label>
         <span>Re-enter Password:</span>
         <input
+          name="rePassword"
           required 
           type="password"
           onChange={(e) => setPassSec(e.target.value)}

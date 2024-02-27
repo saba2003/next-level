@@ -11,11 +11,12 @@ export const metadata = {
   description: 'tis be description',
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ modal, children }) {
   return (
     <html lang="en">
       <body className={rubik.className}>
         <Navbar />
+        {modal}
         {children}
       </body>
     </html>
