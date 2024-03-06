@@ -17,15 +17,15 @@ export default function SignUpForm() {
     setIsLoading(true)
     let successful = false
 
-    const user = {
-      id: 0, mail, pass
+    const newUser = {
+      id: "", mail, pass
     }
 
     await fetch('http://localhost:4000/users')
       .then(res => res.json())
       .then(users => {
         users.forEach(user => {
-          if(user.email === mail){
+          if(user.mail === mail){
             successful = true
           }
         });
@@ -36,12 +36,10 @@ export default function SignUpForm() {
       const res = await fetch('http://localhost:4000/users', {
         method: 'POST',
         headers: {"content-Type": "application/json"},
-        body: JSON.stringify(user)
+        body: JSON.stringify(newUser)
       })
 
       if(res.status === 201) {
-        user.mail = mail
-        user.pass = pass
         router.push('/')
       }
     }
@@ -95,7 +93,7 @@ export default function SignUpForm() {
         disabled={isLoading}
       >
       {isLoading && <span>loading...</span>}
-      {!isLoading && <span>log in</span>}
+      {!isLoading && <span>sign up</span>}
     </button>
     </form>
   )

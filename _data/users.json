@@ -1,17 +1,17 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "email": "user1@mail.com",
       "password": "user1Pass"
     },
     {
-      "id": "2",
+      "id": 2,
       "email": "Add in a new stylesheet",
       "password": "user2Pass"
     },
     {
-      "id": "3",
+      "id": 3,
       "email": "Fix the footer links",
       "password": "user3Pass"
     }
