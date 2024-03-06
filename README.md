@@ -1,4 +1,4 @@
-### Introduction to NEXT.JS 13/14
+# Introduction to NEXT.JS 13/14
 
 This is my first NEXT project. It features basic API fetching, popup modal and some tailwind use
 
