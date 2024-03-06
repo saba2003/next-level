@@ -1,9 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Introduction to NEXT.JS 13/14
 
-## Getting Started
+This is my first NEXT project. It features basic API fetching, popup modal and some tailwind use
 
-First, run the development server:
+## Running the app
 
+First, run the json server (download if necessary):
+
+```bash
+json-server --watch --port 4000 ./_data/db.json
+```
+
+Secondly, run the development server
 ```bash
 npm run dev
 # or
@@ -14,21 +21,15 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## How to use
 
-To learn more about Next.js, take a look at the following resources:
+ - The initial home page is the dashboard, the button view tickets fetches the tickets from the json server and displays the on another page. Alternatively the `tickets` button on the navbar can be used.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ - The person icon on the navbar takes you to `/account/LogIn` where a user can log in, or use the `sign up` button to create a new user.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+ - If you go to `tickets/create` you can create your own ticket, which will be displayed on the `tickets page`, the app will redirect you to the said page and refresh the route in order to view the newly added ticket
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Other remarks
+The app has utilized the caching features that NEXT.JS provides, which in turn makes the code blazingly fast
